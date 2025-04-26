@@ -1,0 +1,52 @@
+{
+  "name": "informator",
+  "version": "0.0.1",
+  "description": "A flexible and colorful logging utility for Node.js with customizable styling and prefixes",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MakkoyevYevgeniy/informator.git"
+  },
+  "keywords": [
+    "log",
+    "logger",
+    "logging",
+    "console",
+    "terminal",
+    "color",
+    "style",
+    "debug",
+    "node",
+    "typescript"
+  ],
+  "author": "MakkoyevYevgeniy (https://github.com/MakkoyevYevgeniy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MakkoyevYevgeniy/informator/issues"
+  },
+  "homepage": "https://github.com/MakkoyevYevgeniy/informator#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "dateflow": "^0.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.2",
+    "typescript": "^5.8.3"
+  }
+}
