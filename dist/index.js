@@ -75,9 +75,24 @@ function formatForLog(arg, formatObject = false) {
         return String(arg);
     }
 }
+function wrapWithSymbol(nameStr, wrapSymbol) {
+    switch (wrapSymbol) {
+        case '[]':
+            return `[${nameStr}]`;
+        case '()':
+            return `(${nameStr})`;
+        case '{}':
+            return `{${nameStr}}`;
+        case '<>':
+            return `<${nameStr}>`;
+        default:
+            return nameStr;
+    }
+}
 class Informator {
     constructor() { }
     log(...args) {
+        var _a;
         let options = {};
         let messages;
         let onlyOptionsProvided = false;
@@ -128,6 +143,7 @@ class Informator {
         const { name } = options;
         if (name) {
             let nameStr;
+            let wrapSymbol = '[]';
             let nameSpecificStyles = {};
             let useNameSpecificStyles = false;
             if (typeof name === 'string') {
@@ -135,20 +151,21 @@ class Informator {
             }
             else {
                 nameStr = name.name;
+                wrapSymbol = (_a = name.wrapSymbol) !== null && _a !== void 0 ? _a : '[]';
                 nameSpecificStyles = {
                     color: name.color,
                     backgroundColor: name.backgroundColor,
                     bold: name.bold,
                     italic: name.italic,
                     underline: name.underline,
-                    strikethrough: name.strikethrough
+                    strikethrough: name.strikethrough,
                 };
                 useNameSpecificStyles = Object.values(nameSpecificStyles).some(style => style !== undefined);
             }
             const nameStylesToApply = useNameSpecificStyles
                 ? nameSpecificStyles
                 : (onlyOptionsProvided ? mainStyles : {});
-            const nameStrStyled = applyStyles(`[${nameStr}]`, nameStylesToApply);
+            const nameStrStyled = applyStyles(wrapWithSymbol(nameStr, wrapSymbol), nameStylesToApply);
             prefix += nameStrStyled + ' ';
         }
         const { dateFlowOptions, separatorOptions } = options;

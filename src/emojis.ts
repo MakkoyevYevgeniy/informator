@@ -1,0 +1,43 @@
+export type EmojiMap = {
+    [key: string]: string;
+};
+
+export const emoji: EmojiMap = {
+    smile: '😄',
+    grin: '😁',
+    check: '✅',
+    heavyCheckMark: '✔️',
+    ballotBoxWithCheck: '☑️',
+    cross: '❌',
+    warning: '⚠️',
+    gear: '⚙️',
+    rocket: '🚀',
+    hourglass: '⏳',
+    sparkles: '✨',
+    arrowRight: '➡️',
+    arrowLeft: '⬅️',
+    arrowUp: '⬆️',
+    arrowDown: '⬇️',
+    info: 'ℹ️',
+    question: '❓',
+    lightBulb: '💡',
+    fire: '🔥',
+    bug: '🐛',
+    construction: '🚧',
+    link: '🔗',
+    wrench: '🔧',
+    package: '📦',
+    star: '⭐',
+    clock: '⏰',
+    save: '💾',
+    hammer: '🔨', 
+    testTube: '🧪',
+    memo: '📝',
+    zap: '⚡', 
+    lock: '🔒', 
+    globe: '🌐',
+    art: '🎨', 
+    robot: '🤖',
+    seedling: '🌱', 
+    tree: '🌲'
+}

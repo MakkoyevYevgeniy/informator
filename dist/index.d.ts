@@ -1,6 +1,7 @@
 import { RGB, HEX, TailwindRgbColorValue } from './colors';
 export type { TailwindRgbColorValue, StyleOptions, DateFlowOptions, SeparatorOptions, LogOptions };
 export { RGB, HEX };
+type WrapSymbol = '[]' | '()' | '{}' | '<>' | '';
 type DateFlowOptions = {
     format?: string;
     date?: Date;
@@ -32,6 +33,8 @@ type LogOptions = {
     separatorOptions?: SeparatorOptions;
     name?: string | StyleOptions & {
         name: string;
+        useWrapSymbol?: boolean;
+        wrapSymbol?: WrapSymbol;
     };
 };
 type StyleOptions = {

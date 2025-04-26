@@ -8,6 +8,8 @@ export { RGB, HEX }; // Exporting color objects as well
 
 // --- Internal Type Definitions ---
 
+type WrapSymbol = '[]' | '()' | '{}' | '<>' | '';
+
 type DateFlowOptions = {
     format?: string;
     date?: Date;
@@ -40,7 +42,9 @@ type LogOptions = {
     dateFlowOptions?: DateFlowOptions | true
     separatorOptions?: SeparatorOptions;
     name?: string | StyleOptions & {
-        name: string
+        name: string,
+        useWrapSymbol?: boolean,
+        wrapSymbol?: WrapSymbol,
     };
 };
 
@@ -122,6 +126,21 @@ function formatForLog(arg: any, formatObject: boolean = false): string {
     }
 }
 
+function wrapWithSymbol(nameStr: string, wrapSymbol: WrapSymbol): string {
+    switch (wrapSymbol) {
+        case '[]':
+            return `[${nameStr}]`;
+        case '()':
+            return `(${nameStr})`;
+        case '{}':
+            return `{${nameStr}}`;
+        case '<>':
+            return `<${nameStr}>`;
+        default:
+            return nameStr;
+    }
+}
+
 export class Informator {
     constructor() {}
 
@@ -182,6 +201,7 @@ export class Informator {
         const { name } = options;
         if (name) {
             let nameStr: string;
+            let wrapSymbol: WrapSymbol = '[]';
             let nameSpecificStyles: StyleOptions = {};
             let useNameSpecificStyles = false;
 
@@ -189,13 +209,15 @@ export class Informator {
                 nameStr = name;
             } else {
                 nameStr = name.name;
+                wrapSymbol = name.wrapSymbol ?? '[]';
+
                 nameSpecificStyles = {
                     color: name.color,
                     backgroundColor: name.backgroundColor,
                     bold: name.bold,
                     italic: name.italic,
                     underline: name.underline,
-                    strikethrough: name.strikethrough
+                    strikethrough: name.strikethrough,
                 };
                 useNameSpecificStyles = Object.values(nameSpecificStyles).some(style => style !== undefined);
             }
@@ -204,7 +226,7 @@ export class Informator {
                 ? nameSpecificStyles
                 : (onlyOptionsProvided ? mainStyles : {});
 
-            const nameStrStyled = applyStyles(`[${nameStr}]`, nameStylesToApply);
+            const nameStrStyled = applyStyles(wrapWithSymbol(nameStr, wrapSymbol), nameStylesToApply);
             prefix += nameStrStyled + ' ';
         }
 

@@ -1,6 +1,6 @@
 {
   "name": "informator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A flexible and colorful logging utility for Node.js with customizable styling and prefixes",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
