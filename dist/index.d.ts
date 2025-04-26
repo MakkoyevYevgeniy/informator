@@ -1,6 +1,8 @@
 import { RGB, HEX, TailwindRgbColorValue } from './colors';
+import { emoji } from './emojis';
 export type { TailwindRgbColorValue, StyleOptions, DateFlowOptions, SeparatorOptions, LogOptions };
 export { RGB, HEX };
+export { emoji };
 type WrapSymbol = '[]' | '()' | '{}' | '<>' | '';
 type DateFlowOptions = {
     format?: string;

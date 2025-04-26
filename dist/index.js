@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Informator = exports.HEX = exports.RGB = void 0;
+exports.Informator = exports.emoji = exports.HEX = exports.RGB = void 0;
 const dateflow_1 = require("dateflow");
 const colors_1 = require("./colors");
 Object.defineProperty(exports, "RGB", { enumerable: true, get: function () { return colors_1.RGB; } });
 Object.defineProperty(exports, "HEX", { enumerable: true, get: function () { return colors_1.HEX; } });
+const emojis_1 = require("./emojis");
+Object.defineProperty(exports, "emoji", { enumerable: true, get: function () { return emojis_1.emoji; } });
 const util_1 = require("util");
 function applyStyles(text, styles = {}) {
     const codes = [];

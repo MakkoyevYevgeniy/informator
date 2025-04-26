@@ -1,12 +1,12 @@
 import { DateFlow, DateFormatType } from 'dateflow';
 import { RGB, HEX, TailwindRgbColorValue } from './colors';
+import { emoji } from './emojis';   
 import { inspect } from 'util';
 
 // --- Exported Types ---
 export type { TailwindRgbColorValue, StyleOptions, DateFlowOptions, SeparatorOptions, LogOptions };
-export { RGB, HEX }; // Exporting color objects as well
-
-// --- Internal Type Definitions ---
+export { RGB, HEX };
+export { emoji };
 
 type WrapSymbol = '[]' | '()' | '{}' | '<>' | '';
 
