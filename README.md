@@ -20,6 +20,61 @@ yarn add Informator
 ```
 *Note: `dateflow` is a dependency and will be installed automatically.*
 
+## CDN Usage
+
+You can also use Informator directly in the browser via CDN, for example, using jsDelivr. This is useful for quick tests, demos, or embedding in web pages. The UMD bundle exposes `informator` as a global variable.
+
+Make sure to replace `0.0.3` with the actual latest version of the package if you are using a newer one. You can find the latest version on npm.
+
+**Include the script:**
+
+```html
+<!-- Unminified version -->
+<script src="https://cdn.jsdelivr.net/npm/informator@0.0.3/dist/informator.umd.js"></script>
+
+<!-- Minified version -->
+<script src="https://cdn.jsdelivr.net/npm/informator@0.0.3/dist/informator.umd.min.js"></script>
+```
+
+**Example Usage in HTML:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Informator CDN Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/informator@0.0.3/dist/informator.umd.min.js"></script>
+</head>
+<body>
+    <h1>Check the console!</h1>
+    <script>
+        // The library is available under the global 'informator'
+        if (window.informator) {
+            const { Informator, RGB } = window.informator; // Destructure if needed
+            const log = new Informator();
+
+            log.log("Hello from the browser via CDN!");
+            log.info("This is an info message.", { name: "CDN_TEST" });
+            log.log("Styled message from CDN", { color: RGB.blue[500], bold: true });
+
+            const myObject = { framework: "None", source: "CDN" };
+            // Note: formatObject relies on util.inspect, which is Node.js specific.
+            // Browser behavior for object logging will be the browser's default console.log.
+            log.log("Object from CDN:", myObject);
+        } else {
+            console.error("Informator library not loaded.");
+        }
+    </script>
+</body>
+</html>
+```
+
+**Important Considerations for Browser Usage:**
+
+*   **`formatObject`:** The `formatObject` feature relies on Node.js's `util.inspect` for rich object formatting. In the browser, objects logged with or without `formatObject` will be displayed using the browser's native `console.log` capabilities for object inspection, which are generally good but will differ from the Node.js terminal output.
+*   **Styling:** Terminal-specific styling (like certain complex ANSI escapes if they were used beyond basic colors) might not render as expected in a browser console. However, basic color and style attributes (bold, italic) provided by Informator should generally work if the browser console supports them.
+*   **Dependencies:** The UMD bundle includes necessary dependencies like `dateflow`.
+
 ## Usage Examples
 
 ```typescript
